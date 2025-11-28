@@ -31,6 +31,8 @@ from models import DiT_models
 from diffusion import create_diffusion
 from diffusers.models import AutoencoderKL
 
+from datasets import load_dataset
+from torch.utils.data import Dataset
 
 #################################################################################
 #                             Training Helper Functions                         #
@@ -106,6 +108,32 @@ def center_crop_arr(pil_image, image_size):
 #################################################################################
 #                                  Training Loop                                #
 #################################################################################
+class HuggingFaceImageDataset(Dataset):
+    def __init__(self, hf_dataset, transform=None):
+        # self.hf_datset = hf_dataset
+        self.transform = transform
+        self.has_label = 'label' in hf_dataset.features
+        self.hf_dataset = None
+
+    def _ensure_loaded(self):
+        # load dataset on-demand inside each process/worker
+        if self.hf_dataset is None:
+            self.hf_dataset = load_dataset("valhalla/emoji-dataset", split="train")
+
+    def __len__(self):
+        self._ensure_loaded()
+        return len(self.hf_dataset)
+    
+    def __getitem__(self, idx):
+        self._ensure_loaded()
+        sample = self.hf_dataset[idx]
+        image = sample['image'].convert('RGB')
+        if self.transform:
+            image = self.transform(image)
+        if self.has_label:
+            return image, torch.tensor(sample['label'], dtype=torch.long)
+        else:
+            return image, torch.tensor(0, dtype=torch.long)
 
 def main(args):
     """
@@ -154,6 +182,8 @@ def main(args):
     # Setup optimizer (we used default Adam betas=(0.9, 0.999) and a constant learning rate of 1e-4 in our paper):
     opt = torch.optim.AdamW(model.parameters(), lr=1e-4, weight_decay=0)
 
+    hf_data = load_dataset("valhalla/emoji-dataset", split="train")
+
     # Setup data:
     transform = transforms.Compose([
         transforms.Lambda(lambda pil_image: center_crop_arr(pil_image, args.image_size)),
@@ -161,7 +191,10 @@ def main(args):
         transforms.ToTensor(),
         transforms.Normalize(mean=[0.5, 0.5, 0.5], std=[0.5, 0.5, 0.5], inplace=True)
     ])
-    dataset = ImageFolder(args.data_path, transform=transform)
+
+    dataset = HuggingFaceImageDataset(hf_data, transform=transform)
+    # dataset = ImageFolder(args.data_path, transform=transform)
+
     sampler = DistributedSampler(
         dataset,
         num_replicas=dist.get_world_size(),
@@ -253,11 +286,11 @@ def main(args):
 if __name__ == "__main__":
     # Default args here will train DiT-XL/2 with the hyperparameters we used in our paper (except training iters).
     parser = argparse.ArgumentParser()
-    parser.add_argument("--data-path", type=str, required=True)
+    parser.add_argument("--data-path", type=str, required=False)
     parser.add_argument("--results-dir", type=str, default="results")
     parser.add_argument("--model", type=str, choices=list(DiT_models.keys()), default="DiT-XL/2")
     parser.add_argument("--image-size", type=int, choices=[256, 512], default=256)
-    parser.add_argument("--num-classes", type=int, default=1000)
+    parser.add_argument("--num-classes", type=int, default=2229)
     parser.add_argument("--epochs", type=int, default=1400)
     parser.add_argument("--global-batch-size", type=int, default=256)
     parser.add_argument("--global-seed", type=int, default=0)

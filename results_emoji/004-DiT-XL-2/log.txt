@@ -1,0 +1,25 @@
+[[34m2025-11-27 20:54:46[0m] Experiment directory created at ./results_emoji/004-DiT-XL-2
+[[34m2025-11-27 20:54:54[0m] HTTP Request: HEAD https://huggingface.co/stabilityai/sd-vae-ft-ema/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+[[34m2025-11-27 20:54:54[0m] HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/stabilityai/sd-vae-ft-ema/f04b2c4b98319346dad8c65879f680b1997b204a/config.json "HTTP/1.1 200 OK"
+[[34m2025-11-27 20:54:54[0m] HTTP Request: HEAD https://huggingface.co/stabilityai/sd-vae-ft-ema/resolve/f04b2c4b98319346dad8c65879f680b1997b204a/diffusion_pytorch_model.safetensors.index.json "HTTP/1.1 404 Not Found"
+[[34m2025-11-27 20:54:54[0m] DiT Parameters: 676,545,440
+[[34m2025-11-27 20:54:54[0m] HTTP Request: HEAD https://huggingface.co/datasets/valhalla/emoji-dataset/resolve/main/README.md "HTTP/1.1 404 Not Found"
+[[34m2025-11-27 20:54:54[0m] HTTP Request: GET https://huggingface.co/api/datasets/valhalla/emoji-dataset "HTTP/1.1 200 OK"
+[[34m2025-11-27 20:54:54[0m] HTTP Request: HEAD https://huggingface.co/datasets/valhalla/emoji-dataset/resolve/67684ccc05d8d624f00a89b733d4e1d844b16242/emoji-dataset.py "HTTP/1.1 404 Not Found"
+[[34m2025-11-27 20:54:54[0m] HTTP Request: HEAD https://s3.amazonaws.com/datasets.huggingface.co/datasets/datasets/valhalla/emoji-dataset/valhalla/emoji-dataset.py "HTTP/1.1 404 Not Found"
+[[34m2025-11-27 20:54:54[0m] HTTP Request: HEAD https://huggingface.co/datasets/valhalla/emoji-dataset/resolve/67684ccc05d8d624f00a89b733d4e1d844b16242/README.md "HTTP/1.1 404 Not Found"
+[[34m2025-11-27 20:54:54[0m] HTTP Request: GET https://huggingface.co/api/datasets/valhalla/emoji-dataset/revision/67684ccc05d8d624f00a89b733d4e1d844b16242 "HTTP/1.1 200 OK"
+[[34m2025-11-27 20:54:55[0m] HTTP Request: HEAD https://huggingface.co/datasets/valhalla/emoji-dataset/resolve/67684ccc05d8d624f00a89b733d4e1d844b16242/.huggingface.yaml "HTTP/1.1 404 Not Found"
+[[34m2025-11-27 20:54:55[0m] HTTP Request: GET https://datasets-server.huggingface.co/info?dataset=valhalla/emoji-dataset "HTTP/1.1 200 OK"
+[[34m2025-11-27 20:54:55[0m] HTTP Request: GET https://huggingface.co/api/datasets/valhalla/emoji-dataset/tree/67684ccc05d8d624f00a89b733d4e1d844b16242/data?recursive=true&expand=false "HTTP/1.1 200 OK"
+[[34m2025-11-27 20:54:55[0m] HTTP Request: GET https://huggingface.co/api/datasets/valhalla/emoji-dataset/tree/67684ccc05d8d624f00a89b733d4e1d844b16242?recursive=false&expand=false "HTTP/1.1 200 OK"
+[[34m2025-11-27 20:54:55[0m] HTTP Request: HEAD https://huggingface.co/datasets/valhalla/emoji-dataset/resolve/main/README.md "HTTP/1.1 404 Not Found"
+[[34m2025-11-27 20:54:55[0m] HTTP Request: GET https://huggingface.co/api/datasets/valhalla/emoji-dataset "HTTP/1.1 200 OK"
+[[34m2025-11-27 20:54:55[0m] HTTP Request: HEAD https://huggingface.co/datasets/valhalla/emoji-dataset/resolve/67684ccc05d8d624f00a89b733d4e1d844b16242/emoji-dataset.py "HTTP/1.1 404 Not Found"
+[[34m2025-11-27 20:54:55[0m] HTTP Request: HEAD https://s3.amazonaws.com/datasets.huggingface.co/datasets/datasets/valhalla/emoji-dataset/valhalla/emoji-dataset.py "HTTP/1.1 404 Not Found"
+[[34m2025-11-27 20:54:55[0m] HTTP Request: HEAD https://huggingface.co/datasets/valhalla/emoji-dataset/resolve/67684ccc05d8d624f00a89b733d4e1d844b16242/README.md "HTTP/1.1 404 Not Found"
+[[34m2025-11-27 20:54:55[0m] HTTP Request: HEAD https://huggingface.co/datasets/valhalla/emoji-dataset/resolve/67684ccc05d8d624f00a89b733d4e1d844b16242/.huggingface.yaml "HTTP/1.1 404 Not Found"
+[[34m2025-11-27 20:54:55[0m] HTTP Request: GET https://datasets-server.huggingface.co/info?dataset=valhalla/emoji-dataset "HTTP/1.1 200 OK"
+[[34m2025-11-27 20:54:55[0m] Dataset contains 2,749 images (None)
+[[34m2025-11-27 20:54:55[0m] Training for 100 epochs...
+[[34m2025-11-27 20:54:55[0m] Beginning epoch 0...
